@@ -21,7 +21,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
 - [Formatting Code Automatically](#formatting-code-automatically)
 - [Changing the Page `<title>`](#changing-the-page-title)
 - [Installing a Dependency](#installing-a-dependency)
-- [Importing a Component](#importing-a-component)
+- [Importing a TodoItem](#importing-a-component)
 - [Code Splitting](#code-splitting)
 - [Adding a Stylesheet](#adding-a-stylesheet)
 - [Adding a CSS Modules Stylesheet](#adding-a-css-modules-stylesheet)
@@ -378,7 +378,7 @@ yarn add react-router-dom
 
 This works for any library, not just `react-router-dom`.
 
-## Importing a Component
+## Importing a TodoItem
 
 This project setup supports ES6 modules thanks to Webpack.<br>
 While you can still use `require()` and `module.exports`, we encourage you to use [`import` and `export`](http://exploringjs.com/es6/ch_modules.html) instead.
@@ -388,9 +388,9 @@ For example:
 ### `Button.js`
 
 ```js
-import React, { Component } from 'react';
+import React, { TodoItem } from 'react';
 
-class Button extends Component {
+class Button extends TodoItem {
   render() {
     // ...
   }
@@ -402,10 +402,10 @@ export default Button; // Don’t forget to use export default!
 ### `DangerButton.js`
 
 ```js
-import React, { Component } from 'react';
+import React, { TodoItem } from 'react';
 import Button from './Button'; // Import a component from another file
 
-class DangerButton extends Component {
+class DangerButton extends TodoItem {
   render() {
     return <Button color="red" />;
   }
@@ -445,9 +445,9 @@ export { moduleA };
 ### `App.js`
 
 ```js
-import React, { Component } from 'react';
+import React, { TodoItem } from 'react';
 
-class App extends Component {
+class App extends TodoItem {
   handleClick = () => {
     import('./moduleA')
       .then(({ moduleA }) => {
@@ -495,10 +495,10 @@ This project setup uses [Webpack](https://webpack.js.org/) for handling all asse
 ### `Button.js`
 
 ```js
-import React, { Component } from 'react';
+import React, { TodoItem } from 'react';
 import './Button.css'; // Tell Webpack that Button.js uses these styles
 
-class Button extends Component {
+class Button extends TodoItem {
   render() {
     // You can use them as regular CSS styles
     return <div className="Button" />;
@@ -541,11 +541,11 @@ CSS Modules let you use the same CSS class name in different files without worry
 ### `Button.js`
 
 ```js
-import React, { Component } from 'react';
+import React, { TodoItem } from 'react';
 import styles from './Button.module.css'; // Import css modules stylesheet as styles
 import './another-stylesheet.css'; // Import regular stylesheet
 
-class Button extends Component {
+class Button extends TodoItem {
   render() {
     // reference as a js object
     return <button className={styles.error}>Error Button</button>;
